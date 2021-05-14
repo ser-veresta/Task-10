@@ -5,40 +5,60 @@
 
 .container{
     border: 1px solid black;
-    border-width: 1px 1px 3px;
+    border-width: 2px 2px 4px 2px;
     background-color: whitesmoke;
     border-radius: 5px;
     height: 300px;
-    width: 800px;
-    margin: 200px auto;
+    width: 80%;
+    margin: auto;
+    margin-top: 25%;
+}
+
+.inst{
+    font-size: 25px;
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 10px;
+    font-style: italic; 
 }
 
 .display{
-    width: 700px;
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
-    margin-top: 15px;
-    flex-direction: column;
+    width: 70%;
+    margin: auto;
 }
 
-.display-1,.display-2{
-    margin-top: 20px;
-    width: 400px;
+.flex{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8%;
+}
+
+input{
     height: 50px;
     text-indent: 10px;
     font-size: 20px;
     font-style: italic;
     padding-right: 5px;
-    flex : 1;
+}
+
+button{
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    height: 54px;
+    width: 15%;
+    flex: none;
+}
+
+.display-1{
+    width: 80%;
 }
 
 .display-2{
-    width: 300px;
-    flex:initial;
-    text-align: right;
+    width: 50%;
+    text-align: right; 
+    margin-top: 5%;
 }
-
 
 .bg-lightgrey{
     background-color: white;
@@ -63,56 +83,31 @@
     background-color: #059862;
 }
 
-.inst{
-    font-size: 25px;
-    margin-top: 20px;
-    margin-left: 10px;
-    padding: 10px;
-    font-style: italic;
-    text-align: left;
-}
-
-button{
-    font-size: 16px;
-    font-style: italic;
-    font-weight: bold;
-    height: 54px;
-    width: 100px;
-    flex: initial;
-    align-self: center;
-    margin-left: 10px;
-    margin-top: 20px;
-}
-
-.flex{
-    display: flex;
-    justify-content: space-between;
-}
-
-@media (max-width: 768px) {
+@media only screen and (max-width: 500px) {
     .container{
-        width: 400px;
+        width: 90%;
+        height: 200px;
+        margin-top: 50%;
     }
     .inst{
-        font-size: 20px;
+        font-size: 15px;
     }
     .display{
-        width: 300px;
-        margin-left: 50px;
+        width: 80%;
     }
     .display-1{
-        width: 200px;
+        width: 70%;
         height: 30px;
-        font-size: 15px;
+        font-size: 12px;
     }
     .display-2{
-        width: 150px;
+        width: 60%;
         height: 30px;
-        font-size: 15px;
+        font-size: 12px;
     }
     button{
         font-size: 12px;
-        width: 80px;
+        width: 20%;
         height: 34px;
     }
 }

@@ -179,7 +179,6 @@ function createTag(tagName,cont,classes) {
 }
 
 //creating the required tags in html
-const form = createTag('form','',['form']);
 const container = createTag('div','',['container']);
 const instruction = createTag('div','<p>Type to enter the expression in the first box and press enter for output</p>',['inst']);
 const display = createTag('div','',['display']); 
@@ -194,8 +193,7 @@ display2.setAttribute('placeholder','Output');
 display2.setAttribute('readonly','');
 
 //appending the tags to html
-document.body.append(form);
-form.append(container);
+document.body.append(container);
 container.append(instruction,display);
 display.append(flex,display2);
 flex.append(display1,enter);
@@ -203,7 +201,7 @@ flex.append(display1,enter);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //creating a onclick event
-form.onclick = submit;
+enter.onclick = submit;
 
 //event listener to input keys using keyboard
 document.addEventListener('keyup',(event) => {

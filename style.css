@@ -5,109 +5,129 @@
 
 .container{
     border: 1px solid black;
-    border-width: 2px 2px 4px 2px;
+    border-width: 1px 1px 3px;
     background-color: whitesmoke;
     border-radius: 5px;
-    height: 300px;
-    width: 80%;
-    margin: auto;
-    margin-top: 12%;
-}
-
-.inst{
-    font-size: 25px;
-    margin-top: 20px;
-    margin-left: 10px;
-    padding: 10px;
-    font-style: italic; 
+    height: 600px;
+    width: 500px;
+    margin: 100px auto;
 }
 
 .display{
-    width: 70%;
-    margin: auto;
-}
-
-.flex{
     display: flex;
     justify-content: space-between;
-    margin-top: 5%;
-}
-
-input{
-    height: 50px;
-    text-indent: 10px;
-    font-size: 20px;
-    font-style: italic;
-    padding-right: 5px;
-}
-
-button{
-    font-size: 16px;
-    font-style: italic;
-    font-weight: bold;
-    height: 54px;
-    width: 15%;
-    flex: none;
+    flex-direction: column;
+    margin-top: 15px;
 }
 
 .display-1{
-    width: 80%;
+    margin: 5px auto;
+    width: 400px;
+    height: 40px;
+    background: none repeat scroll 0 0 #fff;
+    text-align: right;
+    text-indent: 10px;
+    font-size: 30px;
+    padding-right: 5px;
 }
 
-.display-2{
-    width: 50%;
-    text-align: right; 
-    margin-top: 5%;
+.key-pad{
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 400px;
+    margin-top: 10px;
+}
+
+.row{
+    display: flex;
+    width: inherit;
+    height: inherit;
+    flex-direction: row;
+}
+
+.keys{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0;
+    margin: 2px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.keys:hover{
+    background-color: whitesmoke;
+}
+
+.col{
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+    height: inherit;
+}
+
+.flex-2{
+    flex: 2;
+    padding-right: 6px;
 }
 
 .bg-lightgrey{
     background-color: white;
     border: 1px solid grey;
-    border-width: 2px 2px 4px;
+    border-width: 1px 1px 3px;
     border-radius: 4px;
 }
 
-.bg-green{
-    background-color: #04AA6D;
+.bg-red,.bg-red:hover{
+    background-color: lightcoral;
     border: 1px solid grey;
-    border-width: 2px 2px 4px;
+    border-width: 1px 1px 3px;
     border-radius: 4px;
 }
 
-.bg-green:active{
-    border-width: 2px 2px 2px;
+.bg-grey{
+    background-color: lightgrey;
+    border: 1px solid grey;
+    border-width: 1px 1px 3px;
+    border-radius: 4px;
 }
 
-.bg-green:hover{
-    cursor: pointer;
-    background-color: #059862;
+.bg-green,.bg-green:hover{
+    background-color: lightgreen;
+    border: 1px solid grey;
+    border-width: 1px 1px 3px;
+    border-radius: 4px;
 }
 
-@media only screen and (max-width: 500px) {
+
+.keys:active{
+    position: relative;
+    border-bottom: 1px solid grey;
+}
+
+@media only screen and (max-width: 768px){
     .container{
-        width: 90%;
-        height: 200px;
-        margin-top: 50%;
+        height: 400px;
+        width: 300px;
     }
-    .inst{
-        font-size: 15px;
-    }
-    .display{
-        width: 80%;
-    }
+
     .display-1{
-        width: 70%;
+        font-size: 20px;
         height: 30px;
-        font-size: 12px;
+        width: 200px;
     }
-    .display-2{
-        width: 60%;
-        height: 30px;
-        font-size: 12px;
+
+    .key-pad{
+        height: 200px;
+        width: 200px;
     }
-    button{
-        font-size: 12px;
-        width: 20%;
-        height: 34px;
+
+    .keys{
+        font-size: 15px;
     }
 }

@@ -55,7 +55,7 @@ class Conversion {
     }
 
     isNumber(op) {
-        return !isNaN(op);
+        return !isNaN(op) || op === '.';
     }
 
     notGreater(i) {
@@ -171,41 +171,91 @@ class EvalPostfix {
 //function to create new tags
 function createTag(tagName,cont,classes) {
     const tag = document.createElement(tagName);
-    tag.innerHTML = cont;
+    tag.innerText = cont;
     let classStr = classes.reduce((sum,item) => sum + item + ' ','');
     tag.setAttribute('class',classStr);
+
+    if(classes[0] == 'keys'){
+        tag.onclick = click;
+    }
+    else if(tagName == 'input'){
+        tag.setAttribute('type','text');
+        tag.setAttribute('placeholder','0');
+        tag.setAttribute('readonly','');
+    }
 
     return tag; 
 }
 
 //creating the required tags in html
 const container = createTag('div','',['container']);
-const instruction = createTag('div','<p>Type to enter the expression in the first box and press enter for output</p>',['inst']);
-const display = createTag('div','',['display']); 
-const flex = createTag('div','',['flex']);
+const display = createTag('div','',['display']);
 const display1 = createTag('input','',['display-1','bg-lightgrey']);
-display1.setAttribute('placeholder','Expression'); 
-display1.setAttribute('readonly','');
-const enter = createTag('button','Enter',['bg-green']); 
-enter.setAttribute('type','button');
-const display2 = createTag('input','',['display-2','bg-lightgrey']);
-display2.setAttribute('placeholder','Output');
-display2.setAttribute('readonly','');
+const display2 = createTag('input','',['display-1','bg-lightgrey']);
+const keyPad = createTag('div','',['key-pad','bg-grey']);
+const row1 = createTag('div','',['row']);
+const row2 = createTag('div','',['row']);
+const row3 = createTag('div','',['row']);
+const row4 = createTag('div','',['row']);
+const row5 = createTag('div','',['row']);
+const row6 = createTag('div','',['row']);
+const keyac = createTag('span','AC',['keys','bg-red','flex-2']);
+const keyc = createTag('span','c',['keys','bg-red']);
+const keymodulus = createTag('span','%',['keys','bg-lightgrey']);
+const keyseven = createTag('span','7',['keys','bg-lightgrey']);
+const keyeight = createTag('span','8',['keys','bg-lightgrey']);
+const keynine = createTag('span','9',['keys','bg-lightgrey']);
+const keydivide = createTag('span','÷',['keys','bg-lightgrey']);
+const keyfour = createTag('span','4',['keys','bg-lightgrey']);
+const keyfive = createTag('span','5',['keys','bg-lightgrey']);
+const keysix = createTag('span','6',['keys','bg-lightgrey']);
+const keymultiply = createTag('span','×',['keys','bg-lightgrey']);
+const keyone = createTag('span','1',['keys','bg-lightgrey']);
+const keytwo = createTag('span','2',['keys','bg-lightgrey']);
+const keythree = createTag('span','3',['keys','bg-lightgrey']);
+const keyminus = createTag('span','-',['keys','bg-lightgrey']);
+const keydoublezero = createTag('span','00',['keys','bg-lightgrey']);
+const keyzero = createTag('span','0',['keys','bg-lightgrey']);
+const keydecimal = createTag('span','.',['keys','bg-lightgrey']);
+const keyplus = createTag('span','+',['keys','bg-lightgrey']);
+const keyopbrac = createTag('span','(',['keys','bg-lightgrey']);
+const keyclbrac = createTag('span',')',['keys','bg-lightgrey']);
+const keyequal = createTag('span','=',['keys','bg-green','flex-2']);
 
-//appending the tags to html
+//adding the html tags to the body
 document.body.append(container);
-container.append(instruction,display);
-display.append(flex,display2);
-flex.append(display1,enter);
+container.append(display,keyPad);
+display.append(display1,display2);
+keyPad.append(row1,row2,row3,row4,row5,row6);
+row1.append(keyac,keyc,keymodulus);
+row2.append(keyseven,keyeight,keynine,keydivide);
+row3.append(keyfour,keyfive,keysix,keymultiply);
+row4.append(keyone,keytwo,keythree,keyminus);
+row5.append(keydoublezero,keyzero,keydecimal,keyplus);
+row6.append(keyopbrac,keyclbrac,keyequal);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//creating a onclick event
-enter.onclick = submit;
+//keys onclick function for keypad
+function click(){
+    switch(this){
+        case keydivide: display1.value += '/'; break;
+
+        case keymultiply: display1.value += '*'; break;
+
+        case keyac: allclear(); break;
+
+        case keyc: display1.value = backspace(display1.value); break;
+
+        case keyequal: submit(); break;
+
+        default: display1.value += this.innerText;
+    }
+}
 
 //event listener to input keys using keyboard
 document.addEventListener('keyup',(event) => {
-    if(event.location === event.DOM_KEY_LOCATION_NUMPAD || event.key === 'Backspace' || event.key === 'Enter' || event.key === '(' || event.key === ')' || event.key === 'Shift'){
+    if(event.location === event.DOM_KEY_LOCATION_NUMPAD || event.key === 'Backspace' || event.key === 'Enter' || event.key === '(' || event.key === ')' || event.key === 'Shift' || !isNaN(event.key) || event.key === '.'){
 
         switch(event.key){
             case 'Backspace': display1.value = backspace(display1.value); break;
@@ -224,6 +274,12 @@ document.addEventListener('keyup',(event) => {
 },false);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//function for all clear functionality
+function allclear(){
+    display1.value = '';
+    display2.value = '';
+}
 
 //function for backspace functionality
 function backspace(value){
